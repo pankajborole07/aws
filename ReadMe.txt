@@ -22,3 +22,20 @@ chmod 600 aws_pem_key.pem
 ssh -i aws_pem_key.pem ubuntu@54.250.203.168
 
 
+5) Install Elasticsearch on Ubuntu
+
+# Step 1 — Installing and Configuring Elasticsearch
+curl -fsSL https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
+echo "deb https://artifacts.elastic.co/packages/7.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-7.x.list
+sudo apt-get update
+sudo apt install elasticsearch
+
+#Step 2 — Configuring Elasticsearch
+sudo vi /etc/elasticsearch/elasticsearch.yml  => modify network.host: localhost
+sudo systemctl start elasticsearch
+sudo systemctl enable elasticsearch
+
+6) Validate Elasticsearch
+curl localhost:9200/_cat/health
+
+
